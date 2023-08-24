@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hw_1_app.apps.Hw1AppConfig'
-]
+    'hw_1_app.apps.Hw1AppConfig',
+    'hw_2_app.apps.Hw2AppConfig',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -172,6 +173,15 @@ LOGGING = {'version': 1,
             #        'propagate': True,
             #    },
             'hw_1_app': {
+                   # обработчик - только консоль
+                   # 'handlers': ['console'],
+                   # обработчик - консоль и файл
+                   'handlers': ['console', 'file'],
+                   'level': 'DEBUG',
+                   # если есть более вышестоящие логгеры, то их тоже используем
+                   'propagate': True,
+               },
+            'hw_2_app': {
                    # обработчик - только консоль
                    # 'handlers': ['console'],
                    # обработчик - консоль и файл
