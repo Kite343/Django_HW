@@ -17,8 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from django.conf.urls.static import static
+from hwproject import settings
+
+from hw_2_app.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hw1/', include('hw_1_app.urls')),
     path('hw2/', include('hw_2_app.urls')),
+    
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = pageNotFound

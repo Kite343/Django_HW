@@ -15,5 +15,6 @@ class Command(BaseCommand):
         text = '\n'.join(f"{order.client}" for order in orders)
         
         self.stdout.write(f'{intro} {text}')
+        # self.stdout.write(f' {text}')
 
 # python manage.py get_all_orders_by_product_id 18

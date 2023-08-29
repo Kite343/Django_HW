@@ -1,0 +1,27 @@
+{% extends 'hw_2_app/base.html' %}
+
+{% block content %}
+<h1>Продукты за последнюю неделю</h1>
+<ul class="list-articles">
+	{% for p in products_week %}
+	<li><h3>id {{ p.id }} {{ p }} </h3>
+	{% endfor %}
+</ul>
+
+<h1>Продукты за последний месяц</h1>
+<ul class="list-articles">
+	{% for p in products_month %}
+	<li><h3>id {{ p.id }} {{ p }} </h3>
+	{% endfor %}
+</ul>
+
+<h1>Продукты за за последний год</h1>
+<ul class="list-articles">
+	{% for p in products_year %}
+	<li><h3>id {{ p.id }} {{ p }} </h3>
+	{% endfor %}
+</ul>
+
+
+
+{% endblock %}
