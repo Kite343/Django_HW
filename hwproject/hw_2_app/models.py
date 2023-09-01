@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Client(models.Model):
     name = models.CharField(max_length=100)
@@ -9,6 +10,9 @@ class Client(models.Model):
 
     def __str__(self):
         return f'{self.name}: email {self.email}, phone number {self.phone}'
+    
+    def get_absolute_url(self):
+        return reverse('client', kwargs={'client_id': self.pk})
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -19,6 +23,9 @@ class Product(models.Model):
 
     def __str__(self):
         return f"Product {self.name}, price {self.price}"
+    
+    def get_absolute_url(self):
+        return reverse('product', kwargs={'product_id': self.pk})
 
 
 class Order(models.Model):

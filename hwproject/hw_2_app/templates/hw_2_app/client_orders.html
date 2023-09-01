@@ -1,0 +1,63 @@
+{% extends 'hw_2_app/base.html' %}
+
+{% block content %}
+<h1>Заказы за последнюю неделю</h1>
+<ul class="list-articles">
+	{% for o in orders_week %}
+	<li><h2>Заказ № {{o.pk}}</h2>
+	<li><h2>client: {{ o.client }}</h2>
+	<li><h2>products: </h2>
+		
+		<ul>{% for p in o.product.all %}
+			<p> {{ p.name }} </p>
+			{% endfor %}
+		</ul>		
+	<li><h2>total amount: {{ o.total_amount }}</h2>
+	<li><h2>time create: {{ o.time_create }}</h2>	
+	{% endfor %}
+</ul>
+
+<h1>Заказы за последний месяц</h1>
+<ul class="list-articles">
+	{% for o in orders_month %}
+	<li><h2>Заказ № {{o.pk}}</h2>
+	<li><h2>client: {{ o.client }}</h2>
+	<li><h2>products: </h2>
+		<ul>{% for p in o.product.all.distinct %}
+			<p> {{ p.name }} </p>
+			{% endfor %}
+		</ul>		
+	<li><h2>total amount: {{ o.total_amount }}</h2>
+	<li><h2>time create: {{ o.time_create }}</h2>	
+	{% endfor %}
+</ul>
+
+<h1>Заказы за последний год</h1>
+<ul class="list-articles">
+	{% for o in orders_year %}
+	<li><h2>Заказ № {{o.pk}}</h2>
+	<li><h2>client: {{ o.client }}</h2>
+	<li><h2>products: </h2>
+		<ul>{% for p in o.product.all.distinct %}
+			<p> {{ p.name }} </p>
+			{% endfor %}
+		</ul>		
+	<li><h2>total amount: {{ o.total_amount }}</h2>
+	<li><h2>time create: {{ o.time_create }}</h2>	
+	{% endfor %}
+</ul>
+
+<!-- <ul class="list-articles">
+	{% for o in orders %}
+	<li><h2>Заказ № {{o.pk}}</h2>
+	<li><h2>client: {{ o.client }}</h2>
+	<li><h2>products: </h2>
+		<ul>{% for p in o.product.all.distinct %}
+			<p> {{ p.name }} </p>
+			{% endfor %}
+		</ul>		
+	<li><h2>total amount: {{ o.total_amount }}</h2>
+	<li><h2>time create: {{ o.time_create }}</h2>	
+	{% endfor %}
+</ul> -->
+{% endblock %}
