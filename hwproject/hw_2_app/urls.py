@@ -14,4 +14,6 @@ urlpatterns = [
     path('client/<int:client_id>/', show_client, name='client'),
     path('client_orders/<int:client_id>/', client_orders, name='client_orders'),
     path('client_products/<int:client_id>/', client_products, name='client_products'),
+    path('add_product/', add_product, name='add_product'),
+    path('prouct_change/<int:product_id>/', prouct_change, name='prouct_change'),
 ]

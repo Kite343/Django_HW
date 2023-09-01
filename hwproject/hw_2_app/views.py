@@ -1,10 +1,11 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from django.http import HttpResponse, HttpResponseNotFound
 import logging
 from datetime import date, datetime, timedelta
 
 from .models import *
+from .forms import *
 
 logger = logging.getLogger(__name__)
 
@@ -110,8 +111,81 @@ def index(request):
  
     return render(request, 'hw_2_app/index.html', context=context)
 
+# def show_product(request, product_id):
+#     return HttpResponse(f"Отображение продукта с id = {product_id}")
+
 def show_product(request, product_id):
-    return HttpResponse(f"Отображение продукта с id = {product_id}")
+    product = get_object_or_404(Product, pk=product_id)
+    context = {
+        'product': product,
+        'menu': menu,
+        'title': 'продукт',
+    }
+    return render(request, 'hw_2_app/product_id.html', context=context)
+
+def add_product(request):
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = Product(name = form.cleaned_data['name'],
+                            photo = form.cleaned_data['photo'],
+                            description = form.cleaned_data['description'],
+                            price = form.cleaned_data['price'],
+                            quantity = form.cleaned_data['quantity'],
+                            )
+            # print(form.cleaned_data)
+            product.save()
+            return redirect('home')
+    else:
+        form = AddProductForm()
+    
+    context = {
+        'menu': menu,
+        'title': 'Добавление продукта',
+        'form': form
+    }
+ 
+    return render(request, 'hw_2_app/add_product.html', context)
+
+# def prouct_change(request, product_id):
+#     product = get_object_or_404(Product, pk=product_id) 
+#     if request.method == "POST":
+#         form = ProductForm(request.POST, request.FILES, instance=product)
+#         if form.is_valid():
+#             # product = form.save(commit=False)
+#             product = form
+#             product.save()
+#             return show_product(request, product_id=product_id)
+#     else:
+#         form = ProductForm(instance=product)
+    
+#     context = {
+#         'menu': menu,
+#         'title': 'Редактирование карточки продукта',
+#         'form': form
+#     }
+ 
+#     return render(request, 'hw_2_app/prouct_change.html', context)
+
+def prouct_change(request, product_id):
+    product = get_object_or_404(Product, pk=product_id) 
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return show_product(request, product_id=product_id)
+    else:
+        form = ProductForm(instance=product)
+    
+    context = {
+        'menu': menu,
+        'title': 'Редактирование карточки продукта',
+        'form': form,
+        'product_id': product_id
+    }
+ 
+    return render(request, 'hw_2_app/prouct_change.html', context)
+ 
 
 def about(request):
     return render(request, 'hw_2_app/about.html', {'menu': menu, 'title': 'О сайте'})

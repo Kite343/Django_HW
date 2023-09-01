@@ -1,0 +1,16 @@
+{% extends 'hw_2_app/base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+	{% if product.photo %}
+         <p><img class="img-article-left thumb" src="{{product.photo.url}}"></p>
+	{% endif %}
+	<li><h1>id {{ product.id }}</h1>
+	<li><h1>наименование: {{ product.name }}</h1>
+	<li><h2>описание: {{ product.description}}</h2>
+	<li><h2>цена: {{ product.price }}</h2>
+		
+	<li><a href="{% url 'prouct_change'  product.id %}"> редактировать</a></li>
+	
+</ul>
+{% endblock %}
