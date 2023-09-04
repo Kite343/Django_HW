@@ -9,11 +9,13 @@ html, body {
 }
 
 a {
-	color: #0059b2;
+	/* color: #0059b2; */
+	color: #037024;
 	text-decoration: none;
 }
 a:hover {
-	color: #CC0000;
+	/* color: #CC0000; */
+	color: #68f368;
 	text-decoration: underline;
 }
 
@@ -37,7 +39,8 @@ p.link-read-post {
 p.link-read-post a {
 	padding: 10px;
 	min-width: 100px;
-	background: #333671;
+	/* background: #333671; */
+	background: #197e05;
 	color: #fff;
 	text-decoration: none;
 }

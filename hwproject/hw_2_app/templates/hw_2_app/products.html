@@ -1,7 +1,6 @@
 {% extends 'hw_2_app/base.html' %}
 
 {% block content %}
-<p><a href="{% url 'add_product' %}"> <h1> добавить продукт </h1></a></p>
 <ul class="list-articles">
 	{% for p in products %}
 			<li><div class="article-panel">
