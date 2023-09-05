@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -192,7 +192,7 @@ LOGGING = {'version': 1,
                    # 'handlers': ['console'],
                    # обработчик - консоль и файл
                    'handlers': ['console', 'file'],
-                   'level': 'DEBUG',
+                   'level': 'INFO',
                    # если есть более вышестоящие логгеры, то их тоже используем
                    'propagate': True,
                },
